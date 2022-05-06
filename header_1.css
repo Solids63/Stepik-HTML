@@ -1,0 +1,138 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    background: #E5E5E5; 
+
+    
+}
+
+.header{
+    width: 100%;
+    box-sizing: border-box;
+
+    position: relative;
+    width: 1440px;
+    height: 100px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 7px rgba(129, 129, 129, 0.25);
+}
+.menu{
+    padding:0px 50px;
+    height: 100px;
+    background-color:#FFFFFF;
+    display: flex; 
+    justify-content:space-between; 
+    align-items:center;
+    box-shadow: 0px 4px 7px rgba(129, 129, 129, 0.25);
+    
+}
+
+.menu__ul{
+     list-style: none;
+     height: 100%;
+     display: flex;
+     align-items:center;
+}
+
+.menu__li{
+      
+}
+
+.menu__link{
+    justify-content:flex-start;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.015em;
+    text-transform: capitalize;
+    color: #000000;
+    text-decoration:none;
+}
+.menu__link:hover{
+    color:#05a88d;
+}
+.menu__logo{   
+    text-decoration: none;
+    text-transform: uppercase;
+    position:absolute;
+    width: 167px;
+    height: 29px;
+    left: 636px;
+    top: 35px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.015em;
+    color: #05A88D;
+}
+.menu__logo:hover{
+    text-decoration: underline;
+}
+.menu__signup{
+    
+    border: 1px solid #05A88D;
+    box-sizing: border-box;
+    border-radius: 3px;
+    text-decoration:none;
+    padding:12.5px 21px;
+    position:absolute;
+    width: 62px;
+    height: 20px;
+    left: calc(50% - 62px/2 + 482.5px);
+    top: calc(50% - 20px/2 - 0.5px);
+
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 10px;
+    line-width:60px;
+/* identical to box height */
+
+    display: flex;
+    align-items:center;
+    
+    
+    letter-spacing: -0.015em;
+
+    color: #05A88D;
+
+}
+.menu__signup:hover{
+    text-decoration: underline;
+}
+.menu__login{
+    text-decoration: none;
+    position: absolute;
+    width: 45px;
+    height: 20px;
+    left: 1324.5px;
+    top: calc(50% - 20px/2 - 0.5px);
+
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 20px;
+/* identical to box height */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.015em;
+
+    color: #05A88D;
+}
+.menu__login:hover{
+    text-decoration: underline;
+}
