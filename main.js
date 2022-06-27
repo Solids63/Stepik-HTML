@@ -7,11 +7,9 @@ const countElements = document.querySelectorAll('[type="number"]'); //получ
 const btn = document.querySelector(".btn");//получите элемент button(*)
 const resultElem = document.querySelector(".total")//получите элемент span для итоговой суммы
 
-//создайте переменную для хранения итоговой суммы (*)
-let result = 0;
 
 //этот объект нужен для хранения количества каждого товара
-//либо, вы можете создать переменные/массив для хранения значений 
+
 const countGoods = { 
     "expresso": 0,
     "americano": 0,
@@ -24,7 +22,7 @@ const countGoods = {
 
 //этот объект нужен для хранения цены каждого товара
 //т.е. если товар выбран, записываем его цену, если не выбран - записываем 0
-//либо, вы можете создать переменные/массив для хранения значений
+
 const choicePriceGoods = { 
     "expresso": 0,
     "americano": 0,
@@ -35,33 +33,90 @@ const choicePriceGoods = {
     "apple_tart": 0
 }
 
-//создайте функцию, которая будет считать итоговую сумму, подумайте над формулой.
-
-
-
-//для каждого элемента input с кол-вом нужно повесить событие на изменение change, 
-//по которому в объекте должны меняться значения на значение в input
-
-
-//для каждого элемента checkbox нужно повесить событие на изменение change, 
-//по которому в объекте должны меняться значение на цену, если чекбокс выбран
-//или обратно на 0, если чекбокс не выбран
-goodsElements.forEach(element => {
-    element.addEventListener("change", function(){
-        if (element.checked){
-            choicePriceGoods[element.value] = element.value;
-            result += choicePriceGoods.value
-
+// прописываем в countGoods 1 при нажатии на checkbox
+// оставляем введенное значение, если нажимаем checkbox
+function Counting1 () {
+countElements.forEach(element =>{
+    if (element.id === key){
+        if(element.value > 1){
+            countGoods[key]=element.value;
+        }
+        else{
+            element.value = 1;
+            countGoods[key]=element.value;
+        }
         }
     })
-    console.log(resultElem = result)
+}
+
+// прописываем в countGoods 0 при повторном нажатии на checkbox
+function Counting0 () {
+    countElements.forEach(element =>{
+        if (element.id === key){
+            element.value = 0;
+            countGoods[key]=element.value
+        }
+    })
+}
+    
+//считаем общую стоимость исходя из значений в объектах    
+function priceTotal(){
+goodsElements.forEach(elem =>{
+    if(elem.checked){
+    for (key in choicePriceGoods){
+        if (key === elem.dataset.goods){
+            choicePriceGoods[key] = parseInt(elem.value) * parseInt(countGoods[key]);
+            }
+        }
+    }
+    else{
+        for (key in choicePriceGoods){
+            if (key === elem.dataset.goods){
+                countGoods[key] = 0;
+                choicePriceGoods[key] = parseInt(elem.value) * parseInt(countGoods[key]);
+    }
+    }
+    }
 })
+//считаем итоговую сумму по условиям ввода
+summa = 0;
+for (var i in choicePriceGoods){
+        summa +=choicePriceGoods[i]
+        }
+resultElem.textContent = `${summa} руб.`
+}
+
+// считываем данные из input и заносим в объект countGoods
+function ValueChange(){
+countElements.forEach(element =>{
+    element.addEventListener("change", function(){
+        key = element.id
+        countGoods[key] = element.value;
+        priceTotal();
+    })
+    })
+}
+    
+// окончательный подсчет
+goodsElements.forEach(element => { 
+    element.addEventListener("change", function(){ 
+        if(element.checked) {
+            key = element.dataset.goods;
+            Counting1();
+            ValueChange();
+        }
+        else {
+            key = element.dataset.goods;
+            countGoods[key] = 0;
+            Counting0();
+            }
+        priceTotal();
+        
+    })
+})
+
 
 //по клику на кнопку должен появиться alert с текстом
 function myFunction() {
-    alert(`Заказчик: ${userSurname.value} ${userName.value}\r\nИтого: ${resultElem.value} руб.`)
+    alert(`Заказчик: ${userSurname.value} ${userName.value}\r\nИтого: ${summa} руб.`)
 }
-//(*)для выбравших способ 1 или 2 именно внутри данного события будет происходить подсчет итоговой суммы,
-//вам нужно перебрать все элементы checkbox и input в цикле
-
-
